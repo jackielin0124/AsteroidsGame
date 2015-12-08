@@ -1,6 +1,6 @@
 //your variable declarations here
 private SpaceShip bob;
-
+private Star[] sky=new Star[100];
 
 public void setup() 
 {
@@ -8,6 +8,7 @@ public void setup()
   size(600, 600);
   bob=new SpaceShip();
   bob.SpaceShip();
+  
 }
 
 public void draw() 
@@ -23,6 +24,7 @@ public void keyPressed()
   if(keyCode==39){bob.rotate(10);}
   if(keyCode==38){bob.accelerate(0.3);}
   if(keyCode==40){bob.accelerate(-0.3);}
+  if(key=='f'){bob.hyperSpace();}
 }
 
 
@@ -55,7 +57,13 @@ class SpaceShip extends Floater
     yCorners[3] = 0;
   }
 
-  
+  public void hyperSpace(){
+    myCenterX=Math.random()*600;
+    myCenterY=Math.random()*600;
+    myDirectionX=0;
+    myDirectionY=0;
+  }
+
   //completing set and get functions
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
@@ -152,4 +160,23 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
+
+
+
+
+
+class Star
+{
+  double myX, myY;
+  public void Star(){
+    myX=Math.random()*600;
+    myY=Math.random()*600;
+  }
+  public void show(){
+    fill(255);
+    point(myX,myY);
+  }
+}
+
+
 
