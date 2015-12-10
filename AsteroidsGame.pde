@@ -1,11 +1,14 @@
 //your variable declarations here
 private SpaceShip bob;
-private Star[] sky=new Star[100];
+Star[] sky=new Star[100];
 
 public void setup() 
 {
   //your code here
   size(600, 600);
+  for(int i=0; i<sky.length; i++){
+    sky[i]=new Star();
+  }
   bob=new SpaceShip();
   bob.SpaceShip();
   
@@ -14,6 +17,9 @@ public void setup()
 public void draw() 
 {
   background(0);
+  for(int i=0; i<sky.length; i++){
+    sky[i].show();
+  }
   bob.move();
   bob.show();
 }
@@ -167,14 +173,15 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
 
 class Star
 {
-  double myX, myY;
-  public void Star(){
+  private int mySize;
+  private double myX, myY;
+  public Star(){
     myX=Math.random()*600;
     myY=Math.random()*600;
+    mySize=(int)(Math.random()*3)+1;
   }
   public void show(){
-    fill(255);
-    point(myX,myY);
+    ellipse((float)myX,(float)myY,mySize,mySize);
   }
 }
 
