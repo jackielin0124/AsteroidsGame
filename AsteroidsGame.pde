@@ -1,5 +1,6 @@
 //your variable declarations here
 private SpaceShip bob;
+private Asteroid rock;
 Star[] sky=new Star[100];
 
 public void setup() 
@@ -10,7 +11,7 @@ public void setup()
     sky[i]=new Star();
   }
   bob=new SpaceShip();
-  bob.SpaceShip();
+  rock=new Asteroid();
   
 }
 
@@ -22,6 +23,7 @@ public void draw()
   }
   bob.move();
   bob.show();
+  rock.show();
 }
 
 public void keyPressed()
@@ -36,6 +38,51 @@ public void keyPressed()
 
 
 
+class Asteroid extends Floater{
+  private int rotSpeed;
+  public void Asteroid(){
+    if(Math.random()<0.5){
+      rotSpeed=(int)(Math.random()*7);
+    }
+    else 
+      rotSpeed=(int)(Math.random()*7)-6;
+    myCenterX=(Math.random()*600);
+    myCenterY=(Math.random()*600);
+    myPointDirection=(Math.random()*2*PI);
+    myDirectionX=(Math.random()*600);
+    myDirectionY=(Math.random()*600);
+    myColor=100;
+    corners=8;
+    xCorners=new int[corners];
+    yCorners=new int[corners];
+    xCorners[0] = -10;
+    yCorners[0] = 0;
+    xCorners[1] = -8;
+    yCorners[1] = 6;
+    xCorners[2] = 0;
+    yCorners[2] = 10;
+    xCorners[3] = 5;
+    yCorners[3] = 3;
+    xCorners[4] = 9;
+    yCorners[4] = 0;
+    xCorners[5] = 7;
+    yCorners[5] = -8;
+    xCorners[6] = 2;
+    yCorners[6] = -8;
+    xCorners[7] = -6;
+    yCorners[7] = -10;
+  }
+  public void setX(int x){myCenterX=x;}
+  public int getX(){return (int)myCenterX;}
+  public void setY(int y){myCenterY=y;}
+  public int getY(){return (int)myCenterY;}
+  public void setDirectionX(double x){myDirectionX=x;}
+  public double getDirectionX(){return myDirectionX;}
+  public void setDirectionY(double y){myDirectionY=y;}
+  public double getDirectionY(){return myDirectionY;}
+  public void setPointDirection(int degrees){myPointDirection=degrees;}
+  public double getPointDirection(){return myPointDirection;}
+}
 
 
 
@@ -82,9 +129,6 @@ class SpaceShip extends Floater
   public void setPointDirection(int degrees){myPointDirection=degrees;}
   public double getPointDirection(){return myPointDirection;}
 }
-
-
-
 
 
 
@@ -184,6 +228,3 @@ class Star
     ellipse((float)myX,(float)myY,mySize,mySize);
   }
 }
-
-
-
